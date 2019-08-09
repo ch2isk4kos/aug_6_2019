@@ -15,7 +15,6 @@ belongs_to :player
 **Player**
 has_many :teams
 
-
 # Attributes
 
 **Ranking**
