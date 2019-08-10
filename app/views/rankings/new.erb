@@ -1,29 +1,36 @@
 <%= form_for(@ranking) do |f|%>
+    <%= params.inspect %>
 
-  <h1>New Ranking</h1>
-  <hr>
+    <h1>New Ranking</h1>
+    <hr>
 
     <!-- DOUBLE NESTED FORM  -->
 
-   <!-- plural b/c rankings has_many selections -->
-   <%= f.fields_for :selections do |selection_builder|%>
+    <!-- plural b/c rankings has_many selections -->
 
-       <%= selection_builder.label :player_id, "Select Player"%>
-       <%= selection_builder.collection_select(:playert_id, Player.all, :id, :name, include_blank: true)%>
+    <%= f.fields_for :selections do |selection_builder|%>
+        <%= selection_builder.label :player_id, "Select Player"%>
+        <%= selection_builder.collection_select(:player_id, Player.all, :id, :name, include_blank: true)%>
+        <%= selection_builder.collection_select(:player_id, Player.all, :id, :position, include_blank: true)%>
+        <%= selection_builder.collection_select(:player_id, Player.all, :id, :number, include_blank: true)%>
+        <br>
+        <!-- singular b/c player belongs_to a ranking -->
+        <%# selection_builder.fields_for :player do |player_builder|%>
+            <%# player_builder.label :name, "Create Player: " %>
+            <%# player_builder.text_field :name %>
+            <%# player_builder.label :position, "Pos: "%>
+            <%# player_builder.text_field :position %>
+            <%# player_builder.label :number, "No: "%>
+            <%# player_builder.number_field :number %>
+        <%# end %> <!-- player_builder -->
+        <br>
+    <% end %> <!-- selection_builder -->
 
-      <!-- singular b/c player belongs_to a ranking -->
-      <%= selection_builder.fields_for :player do |player_builder|%>
-        <h4><%= player_builder.label :name, "Create Player: "%>
-        <%= player_builder.text_field :name%></h4>
-      <% end %>
+    <br>
+    <%= f.label :description, "Honorable Mentions" %><br>
+    <%= f.text_area :description %>
 
-
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-      <br>
-    <% end %>
-  <br>
-
-  <%= f.submit %>
+    <br>
+    <%= f.submit %>
 
 <% end %>
