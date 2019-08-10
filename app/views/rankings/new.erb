@@ -1,0 +1,29 @@
+<%= form_for(@ranking) do |f|%>
+
+  <h1>New Ranking</h1>
+  <hr>
+
+    <!-- DOUBLE NESTED FORM  -->
+
+   <!-- plural b/c rankings has_many selections -->
+   <%= f.fields_for :selections do |selection_builder|%>
+
+       <%= selection_builder.label :player_id, "Select Player"%>
+       <%= selection_builder.collection_select(:playert_id, Player.all, :id, :name, include_blank: true)%>
+
+      <!-- singular b/c player belongs_to a ranking -->
+      <%= selection_builder.fields_for :player do |player_builder|%>
+        <h4><%= player_builder.label :name, "Create Player: "%>
+        <%= player_builder.text_field :name%></h4>
+      <% end %>
+
+
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+      <br>
+    <% end %>
+  <br>
+
+  <%= f.submit %>
+
+<% end %>
