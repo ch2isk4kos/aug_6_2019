@@ -14,14 +14,13 @@ class RankingsController < ApplicationController
             selection_builder = @ranking.selections.build
 
             # .build_object == builds a belongs_to relationship
-            # selection_builder.build_player
+            selection_builder.build_player
         end
-
     end
 
     def create
         @ranking = Ranking.new(ranking_params)
-        binding.pry
+        # binding.pry
 
         if @ranking.save
             redirect_to ranking_path(@ranking)
@@ -36,10 +35,8 @@ class RankingsController < ApplicationController
     private
 
     def ranking_params
-        params.require(:ranking).permit(:description, selections_attributes: [:ranking_id, player_attributes: [:name]])
+        params.require(:ranking).permit(:description, player_ids: [], selections_attributes: [:player_id, player_attributes: [:name]])
     end
-
-    #, player_ids: [], players_attributes: [:name, :position, :number]
 
     def find_ranking
         @ranking = Ranking.find(params[:id])

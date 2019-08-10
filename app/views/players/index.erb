@@ -1,1 +1,8 @@
-<h1>Ranking</h1>
+<h1>Players</h1>
+<hr>
+
+<ul>
+    <% @players.each do |player| %>
+        <li><%= link_to player.name, player %></li>
+    <% end %>
+</ul>

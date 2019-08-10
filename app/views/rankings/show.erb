@@ -1,0 +1,7 @@
+<h1>Ranking Show Page</h1>
+
+<ol>
+    <% @ranking.selections.each do |selection| %>
+        <li><%= link_to selection.player.name, player_path(selection.player) %></li>
+    <% end %>
+</ol>
