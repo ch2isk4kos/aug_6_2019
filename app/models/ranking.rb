@@ -17,7 +17,7 @@ class Ranking < ApplicationRecord
 
     def selections_attributes=(selection_params)
         selection_params.values.each do |selection_attribute|
-            #if !selection_attribute.values.any?(&:empty?) && (!selection_attribute[:player_attributes][:name].blank? || selection_attribute[:player_id])
+            #if !selection_attribute.values.any?(&:empty?) && (!selection_attribute["player_attributes"]["name"].blank? || selection_attribute["player_id"])
                 self.selections << Selection.create(selection_attribute)
             #end
         end
