@@ -7,10 +7,13 @@
     <!-- DOUBLE NESTED FORM  -->
 
     <!-- plural b/c rankings has_many selections -->
-
+    <ol>
     <%= f.fields_for :selections do |selection_builder|%>
-        <%= selection_builder.label :player_id, "Select Player"%>
-        <%= selection_builder.collection_select(:player_id, Player.all, :id, :name, include_blank: true)%>
+        <li>
+            <%# selection_builder.label :player_id, "Select" %>
+            <%= selection_builder.collection_select(:player_id, Player.all, :id, :name, include_blank: true)%>
+        </li>
+
         <br>
         <!-- singular b/c player belongs_to a selection -->
         <%# selection_builder.fields_for :player do |player_builder|%>
@@ -21,8 +24,8 @@
             <%# player_builder.label :number, "No: "%>
             <%# player_builder.number_field :number %>
         <%# end %> <!-- player_builder -->
-
     <% end %> <!-- selection_builder -->
+    </ol>
 
     <br>
     <%= f.label :description, "Honorable Mentions" %><br>

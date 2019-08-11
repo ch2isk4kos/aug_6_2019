@@ -12,11 +12,11 @@ class Selection < ApplicationRecord
     #   ]
     # ]
 
-    # def player_attributes=(player_params)
-    #     if !player_params['name'].empty?
-    #         self.player = Player.find_or_create_by(player_params)
-    #     end
-    # end
+    def player_attributes=(player_params)
+        if !player_params['name'].empty?
+            self.player = Player.find_or_create_by(player_params)
+        end
+    end
 
 
 
