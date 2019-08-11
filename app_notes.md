@@ -1,8 +1,8 @@
 # Domain
     @team -< @user    -< @address
-@category -< @ranking -< @selection >- @player 
+@category -< @ranking -< @selection >- @player
 
-# Associations: 
+# Associations:
 
 **Ranking**
 has_many :selections
@@ -41,14 +41,14 @@ $ rails g resource Player name position number:integer
 
 ranking = [
     description: "This is my description",
-    
+
     selections_attributes: [
         { rank_position: "1", player_id: 7 },
         { rank_position: "2", player_id: 15 },
         { rank_position: "3", player_id: 11 },
         { rank_position: "4", player_id: 23 },
         { rank_position: "5", player_id: 33 },
-        
+
         player_ids: [],
         player_attributes: [
             { name: "", position: "", number: 0, team_id: 2 },
@@ -59,22 +59,22 @@ ranking = [
 # ranking_params 2
 ranking = [
     description: "This is my description",
-    
+
     selections_attributes: [
         { rank_position: "1", player_id: 7 },
         { rank_position: "2", player_id: 15 },
         { rank_position: "3", player_id: 11 },
         { rank_position: "4", player_id: 23 },
         { rank_position: "5", player_id: 33 },
-        
+
         player_ids: [],
         player_attributes: [
             { name: "", position: "", number: 0, team_id: 2 },
-            
+
             year_ids: [],
             years_attributes: [
                 { city: "", name: "", year: 0000, sport_id: 5},
-                
+
                 sport_ids: []
                 sport_attributes: [
                     { name: "Basketball" }
@@ -89,11 +89,11 @@ ranking = [
 
 # REFACTOR: 1   => [Category]
 
-@category -< @ranking -< @selection >- @player 
+@category -< @ranking -< @selection >- @player
 
 
 # Added Associations:
-                                                
+
 **Category**
 has_many :rankings
 
@@ -111,7 +111,7 @@ $ rails g resource Category title
 **Ranking**
 \* category_id
 
-$ rails g migration AddCategoryIndexToRankings category_id:integer category:belongs_to 
+$ rails g migration AddCategoryIndexToRankings category_id:integer category:belongs_to
 
 
 ########################################################################################################
@@ -149,11 +149,11 @@ belongs_to :ranking
 $ rails g resource User username email password_digest
 
 **Comment**
-\* context
+\* content
 \* user_id
 \* ranking_id
 
-$ rails g resource Comment context:text user_id:integer ranking_id:integer user:belongs_to ranking:belongs_to
+$ rails g model Comment content:text user_id:integer ranking_id:integer user:belongs_to ranking:belongs_to
 
 
 ########################################################################################################
@@ -212,7 +212,7 @@ $ rails g resource Team city name year:integer
                           v
                           |
 @sport -< @category -< @ranking -< @selection >- @player -< @year >- @team >- @sport
-    
+
 
 # Added Associations
 **Sport**
@@ -357,7 +357,7 @@ belongs_to :coach
 **Coach**
 \* name
 
-$ rails g resource Coach name 
+$ rails g resource Coach name
 
 **Team**
 \* coach_id
@@ -409,4 +409,3 @@ belongs_to :sport
                           |                   =<  @select_person  >= @person
 @genre -< @category -< @ranking -< @selection =<  @select_place   >= @place
                                               =<  @select_thing   >= @thing
-                               
