@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :players
-  resources :rankings
+    resources :users
+    resources :players
+    resources :rankings
 
 end
