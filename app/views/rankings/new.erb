@@ -1,7 +1,7 @@
 <%= form_for(@ranking) do |f|%>
     <%= params.inspect %>
 
-    <h1>New Ranking</h1>
+    <h1>New <%= current_user.username.capitalize %> Ranking</h1>
     <hr>
 
     <!-- DOUBLE NESTED FORM  -->
@@ -19,10 +19,6 @@
         <%# selection_builder.fields_for :player do |player_builder|%>
             <%# player_builder.label :name, "Create Player: " %>
             <%# player_builder.text_field :name %>
-            <%# player_builder.label :position, "Pos: "%>
-            <%# player_builder.text_field :position %>
-            <%# player_builder.label :number, "No: "%>
-            <%# player_builder.number_field :number %>
         <%# end %> <!-- player_builder -->
     <% end %> <!-- selection_builder -->
     </ol>
